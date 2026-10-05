@@ -1,6 +1,6 @@
 # Quantum Smart Logistics IDS (`quantum-smart-logistics-ids`)
 
-This repository is for my cybersecurity research project about using Quantum Machine Learning (QML) to detect network attacks in smart logistics systems. It test how quantum-enhanced classifiers perform compared to standard classical machine learning models using the UNSW-NB15 dataset.
+This repository is for our Capstone project about using Quantum Machine Learning (QML) to detect network attacks in smart logistics systems. It test how quantum-enhanced classifiers perform compared to standard classical machine learning models using the UNSW-NB15 dataset.
 
 ---
 
