@@ -1,0 +1,6 @@
+Model,Train rows,Features,Accuracy,Precision,Recall,F1,Train time (s)
+Random Forest (full features),20000,42,0.907,0.8584,0.9748,0.9129,0.3
+kNN (full features),20000,42,0.8572,0.8167,0.9212,0.8658,0.0
+"Classical SVM (RBF, 4 PCA feats)",400,4,0.78,0.6944,1.0,0.8197,0.0
+Random Forest (4 PCA feats),400,4,0.795,0.7438,0.9,0.8145,0.1
+"Quantum SVM (QSVC, ZZFeatureMap, 4 qubits)",400,4,0.785,0.7111,0.96,0.817,366.5

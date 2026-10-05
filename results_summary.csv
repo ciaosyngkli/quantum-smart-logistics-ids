@@ -1,0 +1,12 @@
+Model,Size,Accuracy_mean,Accuracy_std,Precision_mean,Precision_std,Recall_mean,Recall_std,F1_mean,F1_std,AUROC_mean,AUROC_std
+A. Classical SVM (all features),50,0.7333,,0.6522,,1.0,,0.7895,,0.8056,
+A. Classical SVM (all features),100,0.75,,0.6667,,1.0,,0.8,,0.8822,
+B. Random Forest (all features),50,0.75,,0.6829,,0.9333,,0.7887,,0.8861,
+B. Random Forest (all features),100,0.8,,0.7143,,1.0,,0.8333,,0.9256,
+C. Quantum kernel SVM on PCA features (QSVC),50,0.75,,0.6829,,0.9333,,0.7887,,0.7767,
+C. Quantum kernel SVM on PCA features (QSVC),100,0.7667,,0.6818,,1.0,,0.8108,,0.8356,
+D. Classical SVM on autoencoder features,50,0.7167,,0.6383,,1.0,,0.7792,,0.6544,
+D. Classical SVM on autoencoder features,100,0.7167,,0.6383,,1.0,,0.7792,,0.7222,
+E. PROPOSED hybrid: Autoencoder + quantum kernel SVM,50,0.75,,0.6744,,0.9667,,0.7945,,0.7167,
+E. PROPOSED hybrid: Autoencoder + quantum kernel SVM,100,0.75,,0.6744,,0.9667,,0.7945,,0.7333,
+F. Autoencoder-only anomaly detector (unsupervised),0,0.5667,,0.7,,0.2333,,0.35,,0.7522,

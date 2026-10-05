@@ -1,0 +1,6 @@
+Model,Latency_ms_per_sample
+A. Classical SVM (all features),0.006
+B. Random Forest (all features),0.129
+C. Quantum kernel SVM on PCA features (QSVC),533.638
+D. Classical SVM on autoencoder features,0.004
+E. PROPOSED hybrid: Autoencoder + quantum kernel SVM,531.407
