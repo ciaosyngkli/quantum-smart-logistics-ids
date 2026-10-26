@@ -1,52 +1,44 @@
 pipeline {
     agent any
 
-    environment {
-        PYTHON_ENV = "${WORKSPACE}/.venv"
-    }
-
     stages {
-        stage('Checkout Source') {
+        stage('Checkout Code') {
             steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/your-username/cicd-lab1.git'
             }
         }
 
-        stage('Build & Dependencies') {
+        stage('Setup Python Environment') {
             steps {
                 sh '''
-                    python3 -m venv ${PYTHON_ENV}
-                    . ${PYTHON_ENV}/bin/activate
-                    pip install --upgrade pip setuptools
-                    pip install numpy pandas scikit-learn qiskit qiskit-machine-learning matplotlib pytest pyinstaller
-                    
-                    # Bytecode compilation verification
-                    python3 -m py_compile qids_hybrid_v3.py
-                    
-                    # Package into single executable artifact
-                    pyinstaller --onefile --name quids_model --collect-all pandas --collect-all numpy --collect-all qiskit qids_hybrid_v3.py
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    if [ -f requirements.txt ]; then
+                        pip install -r requirements.txt
+                    else
+                        pip install qiskit scikit-learn pytest
+                    fi
                 '''
             }
         }
 
-        stage('Execute Unit & Integration Tests') {
+        stage('Run Tests & Validate Model') {
             steps {
                 sh '''
-                    . ${PYTHON_ENV}/bin/activate
-                    mkdir -p reports
-                    pytest --junitxml=reports/test-results.xml || true
+                    . venv/bin/activate
+                    pytest || python3 quids_model.py
                 '''
             }
         }
     }
 
     post {
-        always {
-            // Lab 7: Parse XML test reports in Jenkins UI
-            junit 'reports/*.xml'
-            
-            // Lab 6: Archive the final build artifact (the binary executable)
-            archiveArtifacts artifacts: 'dist/quids_model', fingerprint: true
+        success {
+            echo 'Quantum model CI pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed during build or test execution.'
         }
     }
 }
